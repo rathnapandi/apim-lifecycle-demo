@@ -20,15 +20,16 @@ parameters:
   type: string
   default: 10:0
   
-  
+pool:
+  vmImage: 'ubuntu-latest'
+    
 trigger:
 - master
 
 jobs:
 - job: deploy
   displayName: Deploy API to Axway API manager
-  pool:
-    vmImage: 'ubuntu-latest'
+  
   steps:
   - task: Maven@3
     inputs:
@@ -41,3 +42,10 @@ jobs:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       goals: 'clean exec:java'
       options: '-Dexec.args="-h ${{ parameters.host }} -u ${{ parameters.username }} -p ${{ parameters.password }} -c ./api-definition/1-design-only-config.json -s api-env -f true -returnCodeMapping ${{ parameters.returnCodeMapping }}"'
+- job: test
+  displayName: Test API 
+  
+  steps:
+  - task: NodeTool@0
+  - script: npm install newman
+   
