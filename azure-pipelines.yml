@@ -38,4 +38,4 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean exec:java'
-    options: '-Dexec.args="-h ${{host}} -u ${{username}} -p ${{password}} -c ./api-definition/1-design-only-config.json -s api-env -f true -returnCodeMapping ${{returnCodeMapping}}"'
+    options: '-Dexec.args="-h ${{ host }} -u ${{ username }} -p ${{ password }} -c ./api-definition/1-design-only-config.json -s api-env -f true -returnCodeMapping ${{ returnCodeMapping }}"'
